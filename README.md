@@ -46,6 +46,7 @@ extend .gitignore with
 tools/**
 !tools/packages.config
 ```
+
 ## Step 4 change Cake to run on dotnet core
 
 Add tools/packages.config with
@@ -116,7 +117,8 @@ Added package 'Cake.CoreCLR.0.25.0' to folder '/Users/grop/dev/reference/referen
 ## step 5 check if Hello Cake! works
 
 run the cake bootstrapper and check that it works as shown below.
-```
+
+```bash
 piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ ./build.sh
 Feeds used:
   /Users/grop/.nuget/packages/
