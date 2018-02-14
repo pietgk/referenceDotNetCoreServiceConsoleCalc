@@ -204,3 +204,63 @@ Total:                        00:00:06.5463774
 piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ dotnet run
 Hello World!
 ```
+
+## Step 7 create a sollution with tests
+
+See [Unit testing C# in .NET Core using dotnet test and xUnit](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test) as the source for the below.
+We changed to a directory src with the console and a test project.
+
+```bash
+rm Program.cs
+rm -fr bin
+rm -fr obj
+dotnet new sln --name CalcService
+dotnet new console --name CalcService
+dotnet sln add ./CalcService/CalcService.csproj
+mkdir CalcService.Test
+cd CalcService.Test
+dotnet new xunit
+dotnet add reference ../CalcService/CalcService.csproj
+cd ..
+dotnet sln add CalcService.Test/CalcService.Test.csproj
+```
+
+Add Test Task as follows
+
+Create a ./build/paths.cake with
+
+```c#
+public static class Paths {
+  public static string TestProjectDirectory = "./src/CalcService.Test";
+}
+```
+
+include the load of this file in build.cake
+
+```c#
+#load build/paths.cake // at the top of build.cake
+```
+
+And add the Test runner dependant on Restore.
+
+```c#
+Task("Test")
+.IsDependentOn("Restore")
+.Does(() => {
+  DotNetCoreTest(Paths.TestProjectDirectory);
+});
+```
+
+Change the default target to Test
+
+```c#
+var target = Argument("target", "Test");
+```
+
+And try out running the Test
+
+```bash
+./build.sh -verbosity=diagnostic
+```
+
+Note: using ./build.sh -t Test gives an error 'More than one build script specified.' this needs some research to solve.

@@ -1,9 +1,18 @@
+#load build/paths.cake
+
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
 
-var target = Argument("target", "Default");
+var target = Argument("target", "Test");
 var configuration = Argument("configuration", "Release");
+
+//////////////////////////////////////////////////////////////////////
+// PREPARATION
+//////////////////////////////////////////////////////////////////////
+
+// Define directories.
+var buildDir = Directory("./src/CalcService/bin") + Directory(configuration);
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -25,17 +34,30 @@ Teardown(ctx =>
 // TASKS
 ///////////////////////////////////////////////////////////////////////////////
 
+Task("Clean")
+    .Does(() =>
+{
+    CleanDirectory(buildDir);
+});
+
 Task("Restore")
+.IsDependentOn("Clean")
 .Does(() => {
-  DotNetCoreRestore();
+  DotNetCoreRestore("./src/CalcService.sln");
 });
 
 Task("Build")
 .IsDependentOn("Restore")
 .Does(() => {
-  DotNetCoreBuild("./referenceDotNetCoreServiceConsoleCalc.csproj", new DotNetCoreBuildSettings {
+  DotNetCoreBuild("./src/CalcService.sln", new DotNetCoreBuildSettings {
     Configuration = configuration
   });
+});
+
+Task("Test")
+.IsDependentOn("Restore")
+.Does(() => {
+  DotNetCoreTest(Paths.TestProjectDirectory);
 });
 
 Task("Default")
