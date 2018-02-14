@@ -25,9 +25,23 @@ Teardown(ctx =>
 // TASKS
 ///////////////////////////////////////////////////////////////////////////////
 
-Task("Default")
+Task("Restore")
 .Does(() => {
-   Information("Hello Cake!");
+  DotNetCoreRestore();
+});
+
+Task("Build")
+.IsDependentOn("Restore")
+.Does(() => {
+  DotNetCoreBuild("./referenceDotNetCoreServiceConsoleCalc.csproj", new DotNetCoreBuildSettings {
+    Configuration = configuration
+  });
+});
+
+Task("Default")
+.IsDependentOn("Build")
+.Does(() => {
+   Information("Default Build");
 });
 
 RunTarget(target);

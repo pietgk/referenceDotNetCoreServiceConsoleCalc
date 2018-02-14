@@ -146,3 +146,57 @@ Default                       00:00:00.0067590
 Total:                        00:00:00.0067590
 ```
 
+## step 6 restore build and run with Cake bootstrapper
+
+```bash
+piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ ./build.sh
+Feeds used:
+  /Users/grop/.nuget/packages/
+  https://api.nuget.org/v3/index.json
+
+All packages listed in /Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/tools/packages.config are alreadyinstalled.
+
+----------------------------------------
+Setup
+----------------------------------------
+Running tasks...
+
+========================================
+Restore
+========================================
+  Restore completed in 18.01 ms for /Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/referenceDotNetCoreServiceConsoleCalc.csproj.
+
+========================================
+Build
+========================================
+Microsoft (R) Build Engine version 15.3.409.57025 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  referenceDotNetCoreServiceConsoleCalc -> /Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/bin/Release/netcoreapp2.0/referenceDotNetCoreServiceConsoleCalc.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.57
+
+========================================
+Default
+========================================
+Default Build
+
+----------------------------------------
+Teardown
+----------------------------------------
+Finished running tasks.
+
+Task                          Duration
+--------------------------------------------------
+Restore                       00:00:01.9856295
+Build                         00:00:04.5600727
+Default                       00:00:00.0006752
+--------------------------------------------------
+Total:                        00:00:06.5463774
+piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ dotnet run
+Hello World!
+```
