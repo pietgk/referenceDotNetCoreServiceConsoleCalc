@@ -17,6 +17,8 @@ dotnet new console
 dotnet run
 ```
 
+See [.NET core guide](https://docs.microsoft.com/en-us/dotnet/core/index) and [dotnet command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet?tabs=netcore2x) documentation.
+
 In Visual Studio Code you now have a development environment with runs (and has debugging) on F5.
 
 ## Step 2 Add GitFlow to the project
