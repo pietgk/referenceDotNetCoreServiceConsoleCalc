@@ -46,3 +46,69 @@ extend .gitignore with
 tools/**
 !tools/packages.config
 ```
+## Step 4 change Cake to run on dotnet core
+
+Add tools/packages.config with
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+    <package id="Cake.CoreCLR" version="0.25.0" />
+</packages>
+```
+
+Change ./build.sh CAKE_EXE to
+
+```bash
+CAKE_EXE=$TOOLS_DIR/Cake.CoreCLR/Cake.dll
+```
+
+and change mono to dotnet at the bottom of ./build.sh
+
+```bash
+# Start Cake
+exec dotnet "$CAKE_EXE" $SCRIPT "${CAKE_ARGUMENTS[@]}"
+```
+
+check if Cake is running on dotnet with
+
+```bash
+piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ ./build.sh --version
+Downloading NuGet...
+Feeds used:
+  /Users/grop/.nuget/packages/
+  https://api.nuget.org/v3/index.json
+
+Restoring NuGet package Cake.CoreCLR.0.25.0.
+Adding package 'Cake.CoreCLR.0.25.0' to folder '/Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/tools'
+Added package 'Cake.CoreCLR.0.25.0' to folder '/Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/tools'
+
+             +##   #;;'
+             #;;#  .+;;;;+,
+             '+;;#;,+';;;;;'#.
+             ++'''';;;;;;;;;;# ;#;
+            ##';;;;++'+#;;;;;'.   `#:
+         ;#   '+'';;;;;;;;;'#`       #.
+      `#,        .'++;;;;;':..........#
+    '+      `.........';;;;':.........#
+   #..................+;;;;;':........#
+   #..................#';;;;;'+''''''.#
+   #.......,:;''''''''##';;;;;'+'''''#,
+   #''''''''''''''''''###';;;;;;+''''#
+   #''''''''''''''''''####';;;;;;#'''#
+   #''''''''''''''''''#####';;;;;;#''#
+   #''''''''''''''''''######';;;;;;#'#
+   #''''''''''''''''''#######';;;;;;##
+   #''''''''''''''''''########';;;;;;#
+   #''''''''''''++####+;#######';;;;;;#
+   #+####':,`             ,#####';;;;;;'
+                              +##'''''+.
+   ___      _          ___       _ _     _
+  / __\__ _| | _____  / __\_   _(_) | __| |
+ / /  / _` | |/ / _ \/__\// | | | | |/ _` |
+/ /___ (_| |   <  __/ \/  \ |_| | | | (_| |
+\____/\__,_|_|\_\___\_____/\__,_|_|_|\__,_|
+
+                             Version 0.25.0+Branch.main.Sha.05b4d3f596defbdf5baecdb3712c9bc17f849b55
+                       Running on .NET Core
+```

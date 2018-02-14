@@ -12,7 +12,7 @@ TOOLS_DIR=$SCRIPT_DIR/tools
 ADDINS_DIR=$TOOLS_DIR/Addins
 MODULES_DIR=$TOOLS_DIR/Modules
 NUGET_EXE=$TOOLS_DIR/nuget.exe
-CAKE_EXE=$TOOLS_DIR/Cake/Cake.exe
+CAKE_EXE=$TOOLS_DIR/Cake.CoreCLR/Cake.dll
 PACKAGES_CONFIG=$TOOLS_DIR/packages.config
 PACKAGES_CONFIG_MD5=$TOOLS_DIR/packages.config.md5sum
 ADDINS_PACKAGES_CONFIG=$ADDINS_DIR/packages.config
@@ -114,4 +114,4 @@ if [ ! -f "$CAKE_EXE" ]; then
 fi
 
 # Start Cake
-exec mono "$CAKE_EXE" $SCRIPT "${CAKE_ARGUMENTS[@]}"
+exec dotnet "$CAKE_EXE" $SCRIPT "${CAKE_ARGUMENTS[@]}"
