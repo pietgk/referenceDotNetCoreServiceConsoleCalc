@@ -112,3 +112,37 @@ Added package 'Cake.CoreCLR.0.25.0' to folder '/Users/grop/dev/reference/referen
                              Version 0.25.0+Branch.main.Sha.05b4d3f596defbdf5baecdb3712c9bc17f849b55
                        Running on .NET Core
 ```
+
+## step 5 check if Hello Cake! works
+
+run the cake bootstrapper and check that it works as shown below.
+```
+piets-mbpro:referenceDotNetCoreServiceConsoleCalc grop$ ./build.sh
+Feeds used:
+  /Users/grop/.nuget/packages/
+  https://api.nuget.org/v3/index.json
+
+All packages listed in /Users/grop/dev/reference/referenceDotNetCoreServiceConsoleCalc/tools/packages.config are alreadyinstalled.
+
+----------------------------------------
+Setup
+----------------------------------------
+Running tasks...
+
+========================================
+Default
+========================================
+Hello Cake!
+
+----------------------------------------
+Teardown
+----------------------------------------
+Finished running tasks.
+
+Task                          Duration
+--------------------------------------------------
+Default                       00:00:00.0067590
+--------------------------------------------------
+Total:                        00:00:00.0067590
+```
+
