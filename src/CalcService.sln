@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcService", "CalcService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcService.Test", "CalcService.Test\CalcService.Test.csproj", "{A019B87E-902D-48C7-9D48-A3CF8047A0D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcTableSum", "CalcTableSum\CalcTableSum.csproj", "{2706CA8C-866E-4389-ACD9-88698546848B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{A019B87E-902D-48C7-9D48-A3CF8047A0D7}.Release|x64.Build.0 = Release|x64
 		{A019B87E-902D-48C7-9D48-A3CF8047A0D7}.Release|x86.ActiveCfg = Release|x86
 		{A019B87E-902D-48C7-9D48-A3CF8047A0D7}.Release|x86.Build.0 = Release|x86
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|x64.ActiveCfg = Debug|x64
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|x64.Build.0 = Debug|x64
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|x86.ActiveCfg = Debug|x86
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Debug|x86.Build.0 = Debug|x86
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|x64.ActiveCfg = Release|x64
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|x64.Build.0 = Release|x64
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|x86.ActiveCfg = Release|x86
+		{2706CA8C-866E-4389-ACD9-88698546848B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

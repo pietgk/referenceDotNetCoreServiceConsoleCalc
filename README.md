@@ -264,3 +264,51 @@ And try out running the Test
 ```
 
 Note: using ./build.sh -t Test gives an error 'More than one build script specified.' this needs some research to solve.
+
+## Step 8 Listen to database table changes
+
+```bash
+dotnet new classlib -n CalcTableSum
+dotnet sln add CalcTableSum/CalcTableSum.csproj
+```
+
+Dotnet core 2.0 does not yet support SqlDependancy (sheduled for dotnet core 2.1),
+We can not use
+
+[SignalR core SqlDependancy](http://elvanydev.com/SignalR-Core-SqlDependency-part2/) [GitHub](https://github.com/vany0114/SignalR-Core-SqlTableDependency)
+See [Query notifications in SQL Server](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/query-notifications-in-sql-server)
+
+Instead we use [ServiceBrokerListener](https://github.com/dyatchenko/ServiceBrokerListener), See its Readme for the details.
+We added the SqlDependencyEx class and implemented the example and some tests.
+
+### How To Use
+
+1. Copy [SqlDependecyEx](https://github.com/dyatchenko/ServiceBrokerListener/blob/master/ServiceBrokerListener/ServiceBrokerListener.Domain/SqlDependencyEx.cs) class from `ServiceBrokerListener.Domain` project into your solution.
+
+2. Make sure that Service Broker is enabled for your database.
+
+    ```sql
+    ALTER DATABASE test SET ENABLE_BROKER
+
+    -- For SQL Express
+    ALTER AUTHORIZATION ON DATABASE::test TO userTest
+    ```
+
+3. Use the class as in example below:
+
+    ```sql
+    // See constructor optional parameters to configure it according to your needs
+    var listener = new SqlDependencyEx(connectionString, "YourDatabase", "YourTable");
+
+    // e.Data contains actual changed data in the XML format
+    listener.TableChanged += (o, e) => Console.WriteLine("Your table was changed!");
+
+    // After you call the Start method you will receive table notifications with
+    // the actual changed data in the XML format
+    listener.Start();
+
+    // ... Your code is here
+
+    // Don't forget to stop the listener somewhere!
+    listener.Stop();
+    ```
